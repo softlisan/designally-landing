@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DesignAlly — WCAG Color Palettes for Figma</title>
+  <meta name="description" content="Generate accessible, WCAG-compliant color palettes directly in Figma with DesignAlly. Light and dark themes from one brand color." />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0b0b1a;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #0b0b1a 0%, #1a1040 50%, #0b0b1a 100%);
+      min-height: 100vh;
+    }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 40px; max-width: 1100px; margin: 0 auto;
+    }
+    nav .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 20px; font-weight: 700; color: #fff;
+    }
+    nav .logo svg { width: 32px; height: 32px; }
+    nav a { color: #a0a0c0; text-decoration: none; font-size: 14px; }
+    nav a:hover { color: #b8a8f0; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .hero {
+      text-align: center; padding: 80px 0 60px;
+    }
+    .hero h1 {
+      font-size: 48px; font-weight: 800; color: #fff;
+      background: linear-gradient(135deg, #a78bfa, #f472b6);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .tagline {
+      font-size: 18px; color: #8888aa; margin: 20px 0 32px; max-width: 600px; margin-left: auto; margin-right: auto;
+    }
+    .btn {
+      display: inline-block; padding: 14px 32px; border-radius: 8px;
+      font-size: 16px; font-weight: 600; text-decoration: none; cursor: pointer;
+      border: none; transition: all 0.2s;
+    }
+    .btn-primary {
+      background: #7c5cfc; color: #fff;
+    }
+    .btn-primary:hover { background: #6a4de6; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: #b8a8f0; border: 1px solid #4a3a7a;
+    }
+    .btn-outline:hover { border-color: #7c5cfc; background: rgba(124,92,252,0.1); }
+    .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    .section { padding: 60px 0; }
+    .section-title {
+      font-size: 28px; font-weight: 700; color: #fff; text-align: center; margin-bottom: 40px;
+    }
+
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.03); border: 1px solid #2a2a4a;
+      border-radius: 12px; padding: 24px; transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: #4a3a7a; }
+    .feature-card .icon { font-size: 28px; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+    .feature-card p { font-size: 14px; color: #8888aa; }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 650px; margin: 0 auto;
+    }
+    .pricing-card {
+      border-radius: 12px; padding: 32px; border: 1px solid #2a2a4a;
+    }
+    .pricing-card.free { background: rgba(255,255,255,0.02); }
+    .pricing-card.pro {
+      background: linear-gradient(135deg, rgba(124,92,252,0.1), rgba(244,114,182,0.05));
+      border-color: #4a3a7a; position: relative;
+    }
+    .pricing-card.pro .badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: #7c5cfc; color: #fff; font-size: 12px; font-weight: 600;
+      padding: 4px 16px; border-radius: 20px;
+    }
+    .pricing-card h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .pricing-card .price { font-size: 36px; font-weight: 800; color: #fff; margin: 16px 0; }
+    .pricing-card .price span { font-size: 16px; color: #8888aa; font-weight: 400; }
+    .pricing-card ul { list-style: none; margin: 20px 0; }
+    .pricing-card ul li { padding: 6px 0; font-size: 14px; color: #a0a0c0; }
+    .pricing-card ul li::before { content: '✓ '; color: #7c5cfc; font-weight: 700; }
+    .pricing-card .btn { width: 100%; text-align: center; margin-top: 8px; }
+
+    .cta {
+      text-align: center; padding: 60px 0;
+    }
+    .cta h2 { font-size: 32px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+    .cta p { color: #8888aa; margin-bottom: 24px; }
+
+    footer {
+      text-align: center; padding: 40px 24px; color: #5555aa; font-size: 13px;
+      border-top: 1px solid #1a1a3a;
+    }
+    footer a { color: #8888aa; text-decoration: none; }
+    footer a:hover { color: #b8a8f0; }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 32px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      nav { padding: 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="gradient-bg">
+  <nav>
+    <div class="logo">
+      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="sGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#818CF8"/>
+            <stop offset="100%" stop-color="#F472B6"/>
+          </linearGradient>
+        </defs>
+        <rect width="512" height="512" rx="112" fill="#0F172A"/>
+        <path d="M 170 140 C 170 72, 342 72, 342 150 C 342 220, 190 220, 190 256 C 190 292, 342 292, 342 362 C 342 440, 170 440, 170 372" fill="none" stroke="url(#sGrad)" stroke-width="72" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      DesignAlly
+    </div>
+    <a href="https://www.softlisan.com">SoftLisan</a>
+  </nav>
+
+  <div class="container">
+    <section class="hero">
+      <h1>Accessible color palettes.<br />One click in Figma.</h1>
+      <p class="tagline">Generate WCAG-compliant light and dark themes from a single brand color. Built for designers who care about accessibility.</p>
+      <div class="btn-group">
+        <a class="btn btn-primary" href="https://www.figma.com/community/plugin/TODO">Install from Figma Community</a>
+        <a class="btn btn-outline" href="#pricing">See Pricing</a>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <h2 class="section-title">Everything you need for accessible design systems</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="icon">🎨</div>
+          <h3>Theme Generation</h3>
+          <p>Light & dark palettes from one brand color using Material 3 HCT color science.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">✅</div>
+          <h3>WCAG Contrast Control</h3>
+          <p>AA or AAA contrast with auto-fix — every color pair meets the bar.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🎭</div>
+          <h3>Style Variants</h3>
+          <p>Modern, Minimal, Vibrant, or Soft — four personalities for any brand.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">👁️</div>
+          <h3>Vision Simulations</h3>
+          <p>Preview palettes under grayscale, protanopia, deuteranopia, and low-vision blur.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📐</div>
+          <h3>Live Preview</h3>
+          <p>Apply colors directly to selected layers in Figma — see your theme in context.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">📤</div>
+          <h3>Multiple Exports</h3>
+          <p>CSS Variables, Tailwind Config, JSON — ship design tokens to your dev team.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <h2 class="section-title">Simple pricing</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card free">
+          <h3>Free</h3>
+          <p class="price">$0<span>/month</span></p>
+          <ul>
+            <li>Light palette generation</li>
+            <li>WCAG AA/AAA auto-fix</li>
+            <li>4 style variants</li>
+            <li>Code export (CSS, Tailwind, JSON)</li>
+            <li>Figma variable sync (light mode)</li>
+          </ul>
+          <a class="btn btn-outline" href="https://www.figma.com/community/plugin/TODO">Get Started</a>
+        </div>
+        <div class="pricing-card pro">
+          <div class="badge">Freemium</div>
+          <h3>Pro</h3>
+          <p class="price">$5<span>/month</span></p>
+          <ul>
+            <li>Everything in Free</li>
+            <li>Full dark palette generation</li>
+            <li>Dark mode variable sync</li>
+            <li>Dark palette in code export</li>
+            <li>Priority support</li>
+          </ul>
+          <a class="btn btn-primary" href="https://www.figma.com/community/plugin/TODO">Upgrade in Figma</a>
+        </div>
+      </div>
+      <p style="text-align:center;color:#5555aa;font-size:13px;margin-top:16px;">The Figma plugin handles payments — no separate account needed.</p>
+    </section>
+
+    <section class="cta">
+      <h2>Make your designs accessible to everyone</h2>
+      <p>Install DesignAlly from the Figma Community and start generating compliant themes in seconds.</p>
+      <a class="btn btn-primary" href="https://www.figma.com/community/plugin/TODO">Install Plugin</a>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2026 <a href="https://www.softlisan.com">SoftLisan</a> — Built for an accessible web.</p>
+    <p style="margin-top:8px;"><a href="mailto:support@softlisan.com">Contact</a></p>
+  </footer>
+</div>
+</body>
+</html>
